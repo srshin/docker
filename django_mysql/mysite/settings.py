@@ -74,17 +74,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_app',
-        'USER': 'django_app',
-        'PASSWORD': 'django_app123',
-        'HOST': 'db',
-        'PORT': '3307',
-        'OPTIONS': {'charset': 'utf8mb4'},
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.mysql', 
+    'NAME': 'djangodocker_db',
+    'USER': 'root',
+    'PASSWORD': 'root',
+    'HOST': '192.168.99.100', #'127.0.0.1', # Or an IP Address that your DB is hosted on
+    'PORT': '3306',
+  }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
