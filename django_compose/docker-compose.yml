@@ -1,0 +1,13 @@
+version: "3"
+services:
+  django:
+    # replace username/repo:tag with your name and image details
+    container_name: django_server
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: django_compose
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
