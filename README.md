@@ -44,7 +44,7 @@ $ docker-machine ip
 
 ### django_compose
 * image : django_compose
-1.  컨테이너 실행  
+1. 이미지 생성 & 컨테이너 실행  
 $docker-compose up   
 2. 브라우저에서 실행  
 http://192.168.99.100:8000/
@@ -70,7 +70,7 @@ http://127.0.0.1:8000/
 TIP: mysql 에 data를 update하였으므로 start해야 함. run하면 컨테이너가 새로 생성되므로 이전 저장한 데이타 사용 불가 
 $ docker ps   
 $ docker start [container name]   
-9. 컨테이너 실행   
+9. 이미지 생성 & 컨테이너 실행    
 $ docker-compose up  
 10. 브라우저에서 실행  
 http://192.168.99.100:8000/
