@@ -2,7 +2,7 @@
 ### HOST OS : windows 10 home
 ### Docker : dockertoolbox
 ### ubuntu
-* image : my_ubuntu  
+* image : ubuntu, my_ubuntu  
 1. Dockerfile 생성  
 2. 이미지 생성  
 $ docker build . -t my_ubuntu
