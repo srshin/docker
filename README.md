@@ -1,6 +1,6 @@
-# DOCKER 사용방법
-## HOST OS : windows 10 home
-## Docker : dockertoolbox
+## DOCKER 사용방법
+### HOST OS : windows 10 home
+### Docker : dockertoolbox
 ### ubuntu
 * image : my_ubuntu  
 1. Dockerfile 생성  
@@ -50,28 +50,28 @@ $docker-compose up
 http://192.168.99.100:8000/
 
 ### django_mysql
-* image : mysql:5.7, django_mysql  
-1. windows환경변수에 path에 추가  
-C:\Program Files\MySQL\MySQL Server 8.0\bin  
+* image : mysql:5.7, django_mysql   
+1. windows환경변수에 path에 추가   
+C:\Program Files\MySQL\MySQL Server 8.0\bin   
 2. mysql 이미지 pull  
-$ docker pull mysql:5.7  
+$ docker pull mysql:5.7   
 3. mysql 실행   
 $ docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=djangodocker_db mysql:5.7  
-4. mysql 접속  
-$ mysql -h127.0.0.1 -proot -uroot
-mysql> show DATABASES;
-5. database update  
+4. mysql 접속    
+$ mysql -h127.0.0.1 -proot -uroot  
+mysql> show DATABASES;  
+5. database update    
 $ python manage.py migrate
-6. local에서 동작 확인
-$ python manage.py runserver
-7. 브라우저에서 실행
-http://127.0.0.1:8000/
-8. mysql이 떠 있는 상태인지 먼저 확인 
+6. local에서 동작 확인  
+$ python manage.py runserver  
+7. 브라우저에서 실행  
+http://127.0.0.1:8000/   
+8. mysql이 떠 있는 상태인지 먼저 확인    
 TIP: mysql 에 data를 update하였으므로 start해야 함. run하면 컨테이너가 새로 생성되므로 이전 저장한 데이타 사용 불가 
-$ docker ps
-$ docker start [container name] 
-9. 컨테이너 실행 
-$ docker-compose up
+$ docker ps   
+$ docker start [container name]   
+9. 컨테이너 실행   
+$ docker-compose up  
 10. 브라우저에서 실행  
 http://192.168.99.100:8000/
 
