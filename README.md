@@ -12,11 +12,13 @@ $ docker build . -t my_ubuntu
 `$ docker run -dit --name my_ubuntu1  -p 3000:3000 -v /c/Users/src:/src my_ubuntu    `
 
 $ docker container ps    
-```CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+```
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
 1bec59f746c5        my_ubuntu           "/bin/bash"         16 seconds ago      Up 10 seconds       0.0.0.0:3000->3000/tcp   my_ubuntu1
 ```
 3.2  접속및 mounting확인   
-```$ docker exec -it my_ubuntu1 bash
+```
+$ docker exec -it my_ubuntu1 bash
 root@216beee81140:/# cd /src
 root@216beee81140:/src# ls
 Dockerfile
