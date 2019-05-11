@@ -1,6 +1,7 @@
 ## DOCKER 사용방법
-### HOST OS : windows 10 home
-### Docker : dockertoolbox
+* HOST OS : windows 10 home
+* Docker : dockertoolbox
+* virtualbo에서 공유폴더 설정해줘야 함. 
 ### ubuntu
 * image : ubuntu, my_ubuntu  
 1. Dockerfile 생성  
