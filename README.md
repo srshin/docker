@@ -6,10 +6,11 @@
 1. Dockerfile 생성  
 2. 이미지 생성  
 $ docker build . -t my_ubuntu
-
 3. 컨테이너 만들기    
 3.1 port 설정 / volume mount (volumn은 반드시 c:/Users아래 있어야 함.)    
-`$ docker run -dit --name my_ubuntu1  -p 3000:3000 -v /c/Users/src:/src my_ubuntu    `
+```
+$ docker run -dit --name my_ubuntu1  -p 3000:3000 -v /c/Users/src:/src my_ubuntu    
+```
 
 $ docker container ps    
 ```
