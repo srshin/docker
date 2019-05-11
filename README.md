@@ -42,13 +42,6 @@ http://192.168.99.100:8000/
 $ docker-machine ip  
 192.168.99.100
 
-### django_compose
-* image : django_compose
-1. 이미지 생성 & 컨테이너 실행  
-$docker-compose up   
-2. 브라우저에서 실행  
-http://192.168.99.100:8000/
-
 ### django_mysql
 * image : mysql:5.7, django_mysql   
 1. windows환경변수에 path에 추가   
@@ -57,22 +50,43 @@ C:\Program Files\MySQL\MySQL Server 8.0\bin
 $ docker pull mysql:5.7   
 3. mysql 실행   
 $ docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=djangodocker_db mysql:5.7  
-4. mysql 접속    
+4. mysql 접속/databse생성    
 $ mysql -h127.0.0.1 -proot -uroot  
 mysql> show DATABASES;  
-5. database update    
+5. local에서 docker database update  (local database service는 꺼야 함.)
 $ python manage.py migrate
 6. local에서 동작 확인  
 $ python manage.py runserver  
-7. 브라우저에서 실행  
 http://127.0.0.1:8000/   
-8. mysql이 떠 있는 상태인지 먼저 확인    
-TIP: mysql 에 data를 update하였으므로 start해야 함. run하면 컨테이너가 새로 생성되므로 이전 저장한 데이타 사용 불가 
+7. mysql이 떠 있는 상태인지 먼저 확인
 $ docker ps   
+* TIP: mysql 에 data를 update하였으므로 종료된 상태인 경우에 start해야 함.   
+* run하면 컨테이너가 새로 생성되므로 이전 저장한 데이타 사용 불가   
 $ docker start [container name]   
-9. 이미지 생성 & 컨테이너 실행    
+8. 이미지 생성 & 컨테이너 실행    
 $ docker-compose up  
-10. 브라우저에서 실행  
+9. 브라우저에서 실행  
 http://192.168.99.100:8000/
+
+### django_compose
+* image : django_compose
+1. 이미지 생성 & 컨테이너 실행  
+$docker-compose up   
+2. 브라우저에서 실행  
+http://192.168.99.100:8000/
+
+### django_mysql_compose
+1. 이미지 build   
+$ docker-compose build
+2. 컨테이너 실행  
+$ docker-compose up
+* database보다 django가 먼저 실행되는 경우 중간에 에러가 날 수 있음. 이때 docker-compose up을 한번 더 하면 됨. 
+
+### django_postgress_compose
+1. 이미지 build   
+$ docker-compose build
+2. 컨테이너 실행   
+$ docker-compose up
+* database보다 django가 먼저 실행되는 경우 중간에 에러가 날 수 있음. 이때 docker-compose up을 한번 더 하면 됨. 
 
 
