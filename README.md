@@ -95,12 +95,13 @@ $ docker-compose up
 
 ### django_postgress_compose_volume
 * 데이타베이스와 코드가 모두 초기화되어있으므로 compose-up만하면됨. 코드 수정시 실시간 반영됨. 
-0. volume에 들어갈 데이터 초기화
+0. volume에 들어갈 데이터 초기화  
+```
 $ docker-compose run web django-admin startproject composeexample .
 $ docker-compose run web python manage.py migrate
 $ docker-compose run web python manage.py createsuperuser
-
-1. docker-compose 수정
+```
+1. docker-compose 수정  
 이미지와 데이터베이스가 각각 volume으로 마운트되도록 수정 
 ```
   db:
