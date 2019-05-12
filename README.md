@@ -3,6 +3,7 @@
 * Docker : dockertoolbox
 * volume 설정 사용: default는 c:/Users만 공유되므로 다른 폴더를 공유하기 위해서는 virtualbxo에서 공유폴더 설정한뒤 docker-machine restart. 
 ### ubuntu
+* ubuntu image를 pull하여 my_ubuntu 생성
 * image : ubuntu, my_ubuntu  
 1. Dockerfile 생성  
 2. 이미지 생성  
@@ -26,6 +27,7 @@ root@216beee81140:/src# ls
 Dockerfile
 ```
 ### python
+* python image를 가져와서 myapp생성 (flask framework)
 * image :myapp, python
 1. 이미지 생성  
 $ docker build . -t myapp  
@@ -35,6 +37,7 @@ $ docker run -it --name myapp2 -p 4000:80 myapp
 http://192.168.99.100:4000/  
 
 ### django
+* python image로 장고 framework 돌아가는 이미지 생성 
 * image :django
 1. 이미지 생성  
 $ docker build . -t django  
@@ -46,7 +49,20 @@ http://192.168.99.100:8000/
 $ docker-machine ip  
 192.168.99.100
 
+
+### django_compose
+* docker-compose를 이용하여 컨테이너 실행
+* image : django_compose
+1. 이미지 생성 & 컨테이너 실행  
+$docker-compose up   
+2. 브라우저에서 실행  
+http://192.168.99.100:8000/
+
+
 ### django_mysql
+* docker-compose를 이용하여 컨테이너 실행 (django만, mysql은 doker run으로 연결) 
+* mysql image를 가져와서 local 의 django frame을 실행하여 mysql에 django db를 반영. 
+* mysql 컨테이너가 살아있는 상태에서  python을 기반으로 장고 이미지를 만든 후 실행 
 * image : mysql:5.7, django_mysql   
 1. windows환경변수에 path에 추가   
 C:\Program Files\MySQL\MySQL Server 8.0\bin   
@@ -72,14 +88,9 @@ $ docker-compose up
 9. 브라우저에서 실행  
 http://192.168.99.100:8000/
 
-### django_compose
-* image : django_compose
-1. 이미지 생성 & 컨테이너 실행  
-$docker-compose up   
-2. 브라우저에서 실행  
-http://192.168.99.100:8000/
 
 ### django_mysql_compose
+* docker-compose를 이용하여 mysql과 django를 실행
 1. 이미지 build   
 $ docker-compose build
 2. 컨테이너 실행  
@@ -88,6 +99,7 @@ $ docker-compose up
 http://192.168.99.100:8000/  
 
 ### django_postgress_compose
+* docker-compose를 이용하여 django와 postgress를 실행
 1. 이미지 build   
 $ docker-compose build
 2. 컨테이너 실행   
@@ -96,7 +108,8 @@ $ docker-compose up
 http://192.168.99.100:8000/  
 
 ### django_postgress_compose_volume
-* 데이타베이스와 코드가 모두 초기화되어있으므로 compose-up만하면됨. 코드 수정시 실시간 반영됨. 
+* docker-compose와 volume을 이용하여 mysql과 django 실행
+* 데이타베이스와 코드가 모두 volume에 의하여 초기화되어있으므로 compose-up만 하면됨. 코드/database 수정시 실시간 반영됨. 
 0. volume에 들어갈 데이터 초기화  
 ```
 $ docker-compose run web django-admin startproject composeexample .
@@ -118,6 +131,25 @@ $ docker-compose build
 3. 컨테이너 실행   
 $ docker-compose up    
 http://192.168.99.100:8000/    
+4. 컨테이너 삭제
+$ docker-compose down 
+
+### django_nginx
+* docker-compose와 volume을 이용하여 django를 nginx server에 배포
+* polls 라는 app을 생성하고 코드 수정 
+* DEBUG=False / ALLOWED_HOSTS 변경 / STATIC_ROOT 추가 
+0. volume에 들어갈 데이터 초기화  
+```
+$ python manage.py collectstatic
+$ docker-compose run app python manage.py migrate
+```
+1. docker-compose 수정  
+nginx, database, app 이미지와 데이터베이스가 각각 volume으로 마운트되도록 수정 
+2. 이미지 build   
+$ docker-compose build
+3. 컨테이너 실행   
+$ docker-compose up    
+http://192.168.99.100:3000/polls    
 4. 컨테이너 삭제
 $ docker-compose down 
 
