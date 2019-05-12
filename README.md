@@ -84,14 +84,16 @@ http://192.168.99.100:8000/
 $ docker-compose build
 2. 컨테이너 실행  
 $ docker-compose up
-* database보다 django가 먼저 실행되는 경우 중간에 에러가 날 수 있음. 이때 docker-compose up을 한번 더 하면 됨. 
+* database보다 django가 먼저 실행되는 경우 중간에 에러가 날 수 있음. 이때 docker-compose up을 한번 더 하면 됨.  
+http://192.168.99.100:8000/  
 
 ### django_postgress_compose
 1. 이미지 build   
 $ docker-compose build
 2. 컨테이너 실행   
 $ docker-compose up
-* database보다 django가 먼저 실행되는 경우 중간에 에러가 날 수 있음. 이때 docker-compose up을 한번 더 하면 됨. 
+* database보다 django가 먼저 실행되는 경우 중간에 에러가 날 수 있음. 이때 docker-compose up을 한번 더 하면 됨.  
+http://192.168.99.100:8000/  
 
 ### django_postgress_compose_volume
 * 데이타베이스와 코드가 모두 초기화되어있으므로 compose-up만하면됨. 코드 수정시 실시간 반영됨. 
@@ -114,7 +116,8 @@ $ docker-compose run web python manage.py createsuperuser
 2. 이미지 build   
 $ docker-compose build
 3. 컨테이너 실행   
-$ docker-compose up
+$ docker-compose up    
+http://192.168.99.100:8000/    
 4. 컨테이너 삭제
 $ docker-compose down 
 
