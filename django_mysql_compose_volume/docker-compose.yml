@@ -1,0 +1,29 @@
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'my-app-db'
+      #MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'  
+    command: --innodb_use_native_aio=0
+    restart: always
+    volumes:
+      - /d/program/git/Docker/django_mysql_compose_volume/mysql:/var/lib/mysql
+  web:
+    # replace username/repo:tag with your name and image details
+    container_name: django_server
+    # replace folder path with your folder specified in virtualbox share folder name
+    volumes:
+      - /d/program/git/Docker/django_mysql_compose_volume:/code
+    build: .
+    image: django_mysql_compose_volume
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
