@@ -1,13 +1,39 @@
 version: "3"
 services:
-  django:
-    # replace username/repo:tag with your name and image details
-    container_name: django_server
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: django_compose
-    command: python manage.py runserver 0.0.0.0:8000
+  nginx:
+    image: nginx:latest 
     ports:
-      - "8000:8000"
+      - "3000:8000"
+    volumes:
+      - /d/program/git/Docker/django_nginx:/code
+      - /d/program/git/Docker/django_nginx/nginx:/etc/nginx/conf.d
+    depends_on: 
+     - app
+  db:
+    image: mysql:5.7
+    container_name: mysql_server
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'my-app-db'
+      #MYSQL_USER: #volume error
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'  
+    command: --innodb_use_native_aio=0
+    restart: always
+    # replace folder path with your folder specified in virtualbox share folder name
+    volumes:
+      - /d/program/git/Docker/django_nginx/mysql:/var/lib/mysql
+  app:
+    image: django_image
+    container_name: django_server
+    # replace folder path with your folder specified in virtualbox share folder name
+    volumes:
+      - /d/program/git/Docker/django_nginx:/code
+    build: .
+    command: gunicorn composeexample.wsgi:application --bind 0.0.0.0:8000 --timeout=30 --workers=2
+    expose:
+      - "8000"
+    depends_on:
+      - db
+
