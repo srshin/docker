@@ -6,15 +6,15 @@ services:
       - '3306:3306'
     environment:
       MYSQL_DATABASE: 'my-app-db'
-      #MYSQL_USER: 'root'
+      #MYSQL_USER: #volume사용시 error 발생하므로 삭제 
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'  
     command: --innodb_use_native_aio=0
     restart: always
+    # replace folder path with your folder specified in virtualbox share folder name
     volumes:
       - /d/program/git/Docker/django_mysql_compose_volume/mysql:/var/lib/mysql
   web:
-    # replace username/repo:tag with your name and image details
     container_name: django_server
     # replace folder path with your folder specified in virtualbox share folder name
     volumes:
