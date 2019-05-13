@@ -147,7 +147,7 @@ $ docker-compose down
 $ python manage.py collectstatic
 $ docker-compose run app python manage.py migrate
 ```
-1. docker-compose 수정  
+* docker-compose 수정  
 nginx, database, app 이미지와 데이터베이스가 각각 volume으로 마운트되도록 수정 
 2. 이미지 build   
 $ docker-compose build
