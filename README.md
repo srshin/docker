@@ -2,6 +2,7 @@
 * HOST OS : windows 10 home
 * Docker : dockertoolbox
 * volume 설정 사용: default는 c:/Users만 공유되므로 다른 폴더를 공유하기 위해서는 virtualbxo에서 공유폴더 설정한뒤 docker-machine restart. 
+* docker toolbox 사용시 localhost대신 192.168.99.100으로 사용해야 함. 
 ### ubuntu
 * ubuntu image를 pull하여 my_ubuntu 생성
 * image : ubuntu, my_ubuntu  
@@ -77,7 +78,7 @@ mysql> show DATABASES;
 $ python manage.py migrate
 6. local에서 동작 확인  
 $ python manage.py runserver  
-http://127.0.0.1:8000/   
+http://192.168.99.100:8000/   
 7. mysql이 떠 있는 상태인지 먼저 확인
 $ docker ps   
 * TIP: mysql 에 data를 update하였으므로 종료된 상태인 경우에 start해야 함.   
