@@ -119,7 +119,7 @@ $ docker-compose run web django-admin startproject composeexample .
 $ docker-compose run web python manage.py migrate
 $ docker-compose run web python manage.py createsuperuser
 ```
-1. docker-compose 수정  
+* docker-compose 수정  
 이미지와 데이터베이스가 각각 volume으로 마운트되도록 수정 
 ```
   db:
@@ -129,12 +129,12 @@ $ docker-compose run web python manage.py createsuperuser
     volumes:
       - /d/program/git/Docker/django_mysql_compose_volume:/code
 ```
-2. 이미지 build   
+1. 이미지 build   
 $ docker-compose build
-3. 컨테이너 실행   
+2. 컨테이너 실행   
 $ docker-compose up    
 http://192.168.99.100:8000/    
-4. 컨테이너 삭제
+3. 컨테이너 삭제  
 $ docker-compose down 
 
 ### django_nginx
@@ -149,11 +149,11 @@ $ docker-compose run app python manage.py migrate
 ```
 * docker-compose 수정  
 nginx, database, app 이미지와 데이터베이스가 각각 volume으로 마운트되도록 수정 
-2. 이미지 build   
+1. 이미지 build   
 $ docker-compose build
-3. 컨테이너 실행   
+2. 컨테이너 실행   
 $ docker-compose up    
 http://192.168.99.100:3000/polls    
-4. 컨테이너 삭제
+3. 컨테이너 삭제
 $ docker-compose down 
 
