@@ -75,7 +75,7 @@ $ docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=djangodo
 4. mysql 접속/databse생성    
 $ mysql -h127.0.0.1 -proot -uroot  
 mysql> show DATABASES;  
-5. local에서 docker database update  (local database service는 꺼야 함.)
+5. local에서 docker database update  (local database service는 꺼야 함.)  
 $ python manage.py migrate
 6. local에서 동작 확인  
 $ python manage.py runserver  
