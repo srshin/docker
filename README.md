@@ -71,6 +71,7 @@ C:\Program Files\MySQL\MySQL Server 8.0\bin
 $ docker pull mysql:5.7   
 3. mysql 실행   
 $ docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=djangodocker_db mysql:5.7  
+화면이 더이상 움지이지 않으면 Ctrl + C로 멈춘다. 컨테이너가 떠있는 지 docker ps로 확인한다. 
 4. mysql 접속/databse생성    
 $ mysql -h127.0.0.1 -proot -uroot  
 mysql> show DATABASES;  
