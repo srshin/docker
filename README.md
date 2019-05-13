@@ -112,7 +112,8 @@ http://192.168.99.100:8000/
 ### django_mysql_compose_volume
 * docker-compose와 volume을 이용하여 mysql과 django 실행
 * 데이타베이스와 코드가 모두 volume에 의하여 초기화되어있으므로 compose-up만 하면됨. 코드/database 수정시 실시간 반영됨. 
-0. volume에 들어갈 데이터 초기화 (필요한 경우에만 실행)   
+0. 수정사항   
+volume에 들어갈 데이터 초기화 실행하였음.  
 ```
 $ docker-compose run web django-admin startproject composeexample .
 $ docker-compose run web python manage.py migrate
@@ -138,9 +139,10 @@ $ docker-compose down
 
 ### django_nginx
 * docker-compose와 volume을 이용하여 django를 nginx server에 배포
+0. 수정사항  
 * polls 라는 app을 생성하고 코드 수정 
 * DEBUG=False / ALLOWED_HOSTS 변경 / STATIC_ROOT 추가 
-0. volume에 들어갈 데이터 초기화  
+*  volume에 들어갈 데이터 초기화하였음. 
 ```
 $ python manage.py collectstatic
 $ docker-compose run app python manage.py migrate
