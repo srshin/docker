@@ -142,6 +142,9 @@ $ docker-compose down
 ### django_nginx
 * docker-compose와 volume을 이용하여 django를 nginx server에 배포
 1. polls 라는 app을 생성  
+```
+python manage.py startapp polls
+```
 2. setting.py 수정 - 배포용 
 * DEBUG=False 
 * ALLOWED_HOSTS 변경
