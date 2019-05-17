@@ -112,14 +112,16 @@ http://192.168.99.100:8000/
 ### django_mysql_compose_volume
 * docker-compose와 volume을 이용하여 mysql과 django 실행
 * 데이타베이스와 코드가 모두 volume에 의하여 초기화되어있으므로 compose-up만 하면됨. 코드/database 수정시 실시간 반영됨. 
-0. 수정사항   
-volume에 들어갈 데이터 초기화 실행하였음.  
+1. 프로젝트 생성 
 ```
 $ docker-compose run web django-admin startproject composeexample .
+```
+2. db update
+```
 $ docker-compose run web python manage.py migrate
 $ docker-compose run web python manage.py createsuperuser
 ```
-* docker-compose 수정  
+3. docker-compose 수정  
 이미지와 데이터베이스가 각각 volume으로 마운트되도록 수정 
 ```
   db:
@@ -129,31 +131,33 @@ $ docker-compose run web python manage.py createsuperuser
     volumes:
       - /d/program/git/Docker/django_mysql_compose_volume:/code
 ```
-1. 이미지 build   
+4. 이미지 build   
 $ docker-compose build
-2. 컨테이너 실행   
+5. 컨테이너 실행   
 $ docker-compose up    
 http://192.168.99.100:8000/    
-3. 컨테이너 삭제  
+6. 컨테이너 삭제  
 $ docker-compose down 
 
 ### django_nginx
 * docker-compose와 volume을 이용하여 django를 nginx server에 배포
-0. 수정사항  
-* polls 라는 app을 생성하고 코드 수정 
-* DEBUG=False / ALLOWED_HOSTS 변경 / STATIC_ROOT 추가 
-*  volume에 들어갈 데이터 초기화하였음. 
+1. polls 라는 app을 생성  
+2. setting.py 수정 - 배포용 
+* DEBUG=False 
+* ALLOWED_HOSTS 변경
+* STATIC_ROOT 추가 
+3. static 모으기, DB만들기  
 ```
 $ python manage.py collectstatic
 $ docker-compose run app python manage.py migrate
 ```
-* docker-compose 수정  
+4. docker-compose 수정  
 nginx, database, app 이미지와 데이터베이스가 각각 volume으로 마운트되도록 수정 
-1. 이미지 build   
+5. 이미지 build   
 $ docker-compose build
-2. 컨테이너 실행   
+6. 컨테이너 실행   
 $ docker-compose up    
 http://192.168.99.100:3000/polls    
-3. 컨테이너 삭제
+7 . 컨테이너 삭제
 $ docker-compose down 
 
