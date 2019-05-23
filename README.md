@@ -1,26 +1,42 @@
-## DOCKER 사용방법
+## DOCKER 사용환경
 * HOST OS : windows 10 home
 * Docker : dockertoolbox
-* volume 설정 사용: default는 c:/Users만 공유되므로 다른 폴더를 공유하기 위해서는 virtualbxo에서 공유폴더 설정한뒤 docker-machine restart. 
-* docker toolbox 사용시 localhost대신 192.168.99.100으로 사용해야 함. 
+* volume 설정 사용: default는 c:/Users만 공유되므로 다른 폴더를 공유하기 위해서는 virtualbox에서 공유폴더 설정한뒤 docker-machine restart. 
+* docker toolbox 사용시 192.168.99.100으로 사용해야 함. 
+## 기본 명령
+### docker-machine
+* docker-machine ssh
+* docker-machine restart
+* docker-machine stop
+### docker build
+* docker build -t [tag]
+* ex : docker build -t my_docker_img
+### docker-compose 
+* docker-compose run [service_name] [command]
+* ex : docker-compose run app bash
+* ex : docker-compose run app python manage.py migrate
+### docker container 
+* docker run -dit -v [folder]:[folder] [image_name]
+* ex : docker run -dit -v /d/program/git:/src ubuntu
+* ex : docker run -it --rm -v "/d/program/git/python":/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-py3-jupyter
+* ex : docker run -dit   -v /d/program/git/python:/src ubuntu
+* docker exec -it [container_name] [command]
+* ex : docker exec -it ubuntu2 bash
+## folder별 설명
 ### ubuntu
-* ubuntu image를 pull하여 my_ubuntu 생성
-* image : ubuntu, my_ubuntu  
-1. Dockerfile 생성  
+* ubuntu image를 pull하여 my_ubuntu 생성 
+1. Dockerfile 
 2. 이미지 생성  
 $ docker build . -t my_ubuntu
 3. 컨테이너 만들기    
-3.1 port 설정 / volume mount (volumn은 반드시 c:/Users아래 있어야 함.)    
+* port 설정 / volume mount (volumn은 반드시 c:/Users아래 있어야 함.)    
 ```
 $ docker run -dit --name my_ubuntu1  -p 3000:3000 -v /c/Users/src:/src my_ubuntu    
-```
-
 $ docker container ps    
-```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
 1bec59f746c5        my_ubuntu           "/bin/bash"         16 seconds ago      Up 10 seconds       0.0.0.0:3000->3000/tcp   my_ubuntu1
 ```
-3.2  접속및 mounting확인   
+*  접속및 mounting 확인   
 ```
 $ docker exec -it my_ubuntu1 bash
 root@216beee81140:/# cd /src
@@ -29,7 +45,6 @@ Dockerfile
 ```
 ### python
 * python image를 가져와서 myapp생성 (flask framework)
-* image :myapp, python
 1. 이미지 생성  
 $ docker build . -t myapp  
 2. 컨테이너 생성 및 실행  
@@ -38,8 +53,7 @@ $ docker run -it --name myapp2 -p 4000:80 myapp
 http://192.168.99.100:4000/  
 
 ### django
-* python image로 장고 framework 돌아가는 이미지 생성 
-* image :django
+* python image로 장고 framework에서 돌아가는 이미지 생성 
 1. 이미지 생성  
 $ docker build . -t django  
 2. 컨테이너 생성 및 실행  
@@ -47,13 +61,13 @@ $ docker run -it --name mydjango1 -p 8000:8000 django
 3. 브라우저에서 실행  
 http://192.168.99.100:8000/  
 4. docker-machin ip 확인
+```
 $ docker-machine ip  
 192.168.99.100
-
+```
 
 ### django_compose
 * docker-compose를 이용하여 컨테이너 실행
-* image : django_compose
 1. 이미지 생성 & 컨테이너 실행  
 $docker-compose up   
 2. 브라우저에서 실행  
@@ -126,10 +140,10 @@ $ docker-compose run web python manage.py createsuperuser
 ```
   db:
     volumes:
-      - /d/program/git/Docker/django_mysql_compose_volume/mysql:/var/lib/mysql
+      - /d/program/git/docker/django_mysql_compose_volume/mysql:/var/lib/mysql
   web:
     volumes:
-      - /d/program/git/Docker/django_mysql_compose_volume:/code
+      - /d/program/git/docker/django_mysql_compose_volume:/code
 ```
 4. 이미지 build   
 $ docker-compose build
@@ -163,4 +177,16 @@ $ docker-compose up
 http://192.168.99.100:3000/polls    
 7 . 컨테이너 삭제
 $ docker-compose down 
+
+### python_compose
+* docker-compose를 이용하여 python 개발환경 구축
+1. 이미지 build   
+$ docker-compose build
+2. interactive하게 container실행
+```
+$  docker-compose run app bash
+root@6dbfed152eb0:/code# python --version
+Python 3.6.8
+```
+
 

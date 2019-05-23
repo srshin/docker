@@ -14,12 +14,12 @@ services:
     restart: always
     # replace folder path with your folder specified in virtualbox share folder name
     volumes:
-      - /d/program/git/Docker/django_mysql_compose_volume/mysql:/var/lib/mysql
+      - /d/program/git/docker/django_mysql_compose_volume/mysql:/var/lib/mysql
   web:
     container_name: django_server
     # replace folder path with your folder specified in virtualbox share folder name
     volumes:
-      - /d/program/git/Docker/django_mysql_compose_volume:/code
+      - /d/program/git/docker/django_mysql_compose_volume:/code
     build: .
     image: django_mysql_compose_volume
     command: python manage.py runserver 0.0.0.0:8000

@@ -5,8 +5,8 @@ services:
     ports:
       - "3000:8000"
     volumes:
-      - /d/program/git/Docker/django_nginx:/code
-      - /d/program/git/Docker/django_nginx/nginx:/etc/nginx/conf.d
+      - /d/program/git/docker/django_nginx:/code
+      - /d/program/git/docker/django_nginx/nginx:/etc/nginx/conf.d
     depends_on: 
      - app
   db:
@@ -23,7 +23,7 @@ services:
     restart: always
     # replace folder path with your folder specified in virtualbox share folder name
     volumes:
-      - /d/program/git/Docker/django_nginx/mysql:/var/lib/mysql
+      - /d/program/git/docker/django_nginx/mysql:/var/lib/mysql
   app:
     image: django_image
     container_name: django_server
