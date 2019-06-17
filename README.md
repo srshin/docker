@@ -4,7 +4,7 @@
 * volume 설정 사용: default는 c:/Users만 공유되므로 다른 폴더를 공유하기 위해서는 virtualbox에서 공유폴더 설정한뒤 docker-machine restart. 
 * docker toolbox 사용시 192.168.99.100으로 사용해야 함. 
 ### docker 기본 명령
-* https://github.com/srshin/blog/edit/master/docker/docker.md
+* https://github.com/srshin/blog/blob/master/docker/docker.md
 
 ## folder별 설명
 ### ubuntu
