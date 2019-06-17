@@ -3,25 +3,9 @@
 * Docker : dockertoolbox
 * volume 설정 사용: default는 c:/Users만 공유되므로 다른 폴더를 공유하기 위해서는 virtualbox에서 공유폴더 설정한뒤 docker-machine restart. 
 * docker toolbox 사용시 192.168.99.100으로 사용해야 함. 
-## 기본 명령
-### docker-machine
-* docker-machine ssh
-* docker-machine restart
-* docker-machine stop
-### docker build
-* docker build -t [tag]
-* ex : docker build -t my_docker_img
-### docker-compose 
-* docker-compose run [service_name] [command]
-* ex : docker-compose run app bash
-* ex : docker-compose run app python manage.py migrate
-### docker container 
-* docker run -dit -v [folder]:[folder] [image_name]
-* ex : docker run -dit -v /d/program/git:/src ubuntu
-* ex : docker run -it --rm -v "/d/program/git/python":/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-py3-jupyter
-* ex : docker run -dit   -v /d/program/git/python:/src ubuntu
-* docker exec -it [container_name] [command]
-* ex : docker exec -it ubuntu2 bash
+### docker 기본 명령
+* https://github.com/srshin/blog/edit/master/docker/docker.md
+
 ## folder별 설명
 ### ubuntu
 * ubuntu image를 pull하여 my_ubuntu 생성 
