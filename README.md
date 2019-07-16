@@ -3,25 +3,9 @@
 * Docker : dockertoolbox
 * volume 설정 사용: default는 c:/Users만 공유되므로 다른 폴더를 공유하기 위해서는 virtualbox에서 공유폴더 설정한뒤 docker-machine restart. 
 * docker toolbox 사용시 192.168.99.100으로 사용해야 함. 
-## 기본 명령
-### docker-machine
-* docker-machine ssh
-* docker-machine restart
-* docker-machine stop
-### docker build
-* docker build -t [tag]
-* ex : docker build -t my_docker_img
-### docker-compose 
-* docker-compose run [service_name] [command]
-* ex : docker-compose run app bash
-* ex : docker-compose run app python manage.py migrate
-### docker container 
-* docker run -dit -v [folder]:[folder] [image_name]
-* ex : docker run -dit -v /d/program/git:/src ubuntu
-* ex : docker run -it --rm -v "/d/program/git/python":/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-py3-jupyter
-* ex : docker run -dit   -v /d/program/git/python:/src ubuntu
-* docker exec -it [container_name] [command]
-* ex : docker exec -it ubuntu2 bash
+### docker 기본 명령
+* https://github.com/srshin/blog/blob/master/docker/docker.md
+
 ## folder별 설명
 ### ubuntu
 * ubuntu image를 pull하여 my_ubuntu 생성 
@@ -188,5 +172,21 @@ $  docker-compose run app bash
 root@6dbfed152eb0:/code# python --version
 Python 3.6.8
 ```
+
+### ubuntu_compose
+* docker-compose를 이용하여 ubuntu 개발환경 구축
+* docker-compose.yml 에 option tty: true로 줘야 함! 
+1. 이미지 build   
+$ docker-compose build
+2. container start  
+$ docker-compose -d  
+3. 또는 build와 up을 한번에   
+$ docker-compose -d --build 
+4. interactive하게 container 실행  
+```
+$  docker-compose exec server bash
+root@6dbfed152eb0:/code#
+```
+
 
 
