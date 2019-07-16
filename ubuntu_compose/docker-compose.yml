@@ -1,0 +1,11 @@
+version: "3"
+services:
+  server:
+    container_name: ubuntu_server
+    build: .
+    image: ubuntu_vim
+    #command: bin/bash
+    tty: true
+
+
+    
