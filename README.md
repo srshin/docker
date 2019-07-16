@@ -173,4 +173,20 @@ root@6dbfed152eb0:/code# python --version
 Python 3.6.8
 ```
 
+### ubuntu_compose
+* docker-compose를 이용하여 ubuntu 개발환경 구축
+* docker-compose.yml 에 option tty: true로 줘야 함! 
+1. 이미지 build   
+$ docker-compose build
+2. container start  
+$ docker-compose -d  
+3. 또는 build와 up을 한번에   
+$ docker-compose -d --build 
+4. interactive하게 container 실행  
+```
+$  docker-compose exec server bash
+root@6dbfed152eb0:/code#
+```
+
+
 
